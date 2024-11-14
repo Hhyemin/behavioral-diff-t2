@@ -8,17 +8,16 @@ def split_lists(given_list, requirement_list):
         e.g., [3, 5] means get the first 3 elements as the first sub-list, 
         and then the followed 5 as the second sub-list. 
     Returns a list of sub-lists.
-    '''
-
-    required_element_num = sum(requirement_list)
-    if required_element_num > len(given_list):
-        print("The given list is shorter than expected. The split process stops once all elements in the list have been processed.")
+    ''' 
 
     sub_lists = []
     for num in requirement_list: # change the variable name to solve a conflict from above lines.
         sub = given_list[0:num]
-        sub_lists.append(sub)
-        if given_list:
+        if not sub:
+            print("The split process stops as all elements in the list have been processed.")
+            break
+        else:
+            sub_lists.append(sub)
             given_list = given_list[num:]
         
     return sub_lists
