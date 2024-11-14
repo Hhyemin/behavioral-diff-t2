@@ -10,11 +10,16 @@ def split_lists(given_list, requirement_list):
     Returns a list of sub-lists.
     '''
 
+    required_element_num = sum(requirement_list)
+    if required_element_num > len(given_list):
+        print("The given list is shorter than expected. The split process stops once all elements in the list have been processed.")
+
     sub_lists = []
-    for len in requirement_list:
-        sub = given_list[0:len]
+    for num in requirement_list: # change the variable name to solve a conflict from above lines.
+        sub = given_list[0:num]
         sub_lists.append(sub)
-        given_list = given_list[len:]
+        if given_list:
+            given_list = given_list[num:]
         
     return sub_lists
 
@@ -31,9 +36,14 @@ def print_splitted_lists_in_order(sub_lists, order):
         random.seed(10)
         order_to_print = random.sample(range(sub_num), sub_num)
     else:
-        is_reverse = False
+        is_reverse = None
         if order == "decrease":
             is_reverse = True
+        elif order == "increase":
+            is_reverse = False
+        else:
+            print("Please give a supported order ('increase', 'decrease', and 'random').")
+            return
 
         dict_len = {}
         for i, sub in enumerate(sub_lists):
