@@ -8,13 +8,11 @@ def split_lists(given_list, requirement_list):
     '''
 
     sub_lists = []
-    start = 0 # the index is included
     for len in requirement_list:
-        end = start+len # not included
-        sub = given_list[start: end] # [)
+        sub = given_list[0:len]
         sub_lists.append(sub)
-        start = end
-
+        given_list = given_list[len:]
+        
     return sub_lists
 
 def print_splitted_lists_in_order(sub_lists, order):
